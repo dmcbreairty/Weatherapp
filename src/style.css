@@ -55,6 +55,11 @@ h3 .partly-cloudy {
   font-size: 48px;
   color: #c7b198;
 }
+footer {
+  text-align: center;
+  position: fixed;
+  bottom: 125px;
+}
 
 a {
   text-decoration: none;
