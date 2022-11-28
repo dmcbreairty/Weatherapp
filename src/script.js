@@ -1,5 +1,13 @@
-let currentTime = new Date();
-function currentDate(currentTime) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = [
     "Sunday",
     "Monday",
@@ -9,91 +17,104 @@ function currentDate(currentTime) {
     "Friday",
     "Saturday",
   ];
-
-  let currentDay = days[currentTime.getDay()];
-  let currentHour = currentTime.getHours();
-  let currentMinutes = currentTime.getMinutes();
-  if (currentMinutes < 10) {
-    currentMinutes = `0${currentMinutes}`;
-  }
-
-  return `${currentDay} ${currentHour}:${currentMinutes}`;
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
 }
 
-function searchCity(city) {
-  let apiKey = "e0a5a97de9a0b7a951e9d154a8f9bad8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  axios.get(apiUrl).then(displayWeatherCondition);
+  return days[day];
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let currentCelsiusTemperature = document.querySelector(".first-temperature");
-  currentCelsiusTemperature.innerHTML = "67°";
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+              <div class="weather-forecast-date">${formatDay(
+                forecastDay.time
+              )}</div>
+              <img
+                src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                  forecastDay.condition.icon
+                }.png"
+                alt=""
+                width="45"
+              />
+              <div class="weather-forecast-temperature">
+                <span class="weather-forecast-temperature-max">${Math.round(
+                  forecastDay.temperature.maximum
+                )}° </span>
+                <span class="weather-forecast-temperature-min"> ${Math.round(
+                  forecastDay.temperature.minimum
+                )}° </span>
+              </div>
+            </div>`;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", displayFahrenheitTemperature);
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  let currentCelsiusTemperature = document.querySelector(".first-temperature");
-  currentCelsiusTemperature.innerHTML = "19°";
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "1ft66b38222ac020b260o674ba337ff5";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", displayCelsiusTemperature);
+function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#first-temperature");
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let pressureElement = document.querySelector("#pressure");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
 
-function displayWeatherCondition(response) {
-  document.querySelector("h1").innerHTML = response.data.name;
-  document.querySelector(".first-temperature").innerHTML = Math.round(
-    response.data.main.temp
+  celsiusTemperature = response.data.temperature.current;
+
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = response.data.temperature.humidity;
+  pressureElement.innerHTML = response.data.temperature.pressure;
+  windElement.innerHTML = response.data.wind.speed;
+  dateElement.innerHTML = formatDate(response.data.time * 1000);
+  iconElement.setAttribute(
+    "src",
+    `https://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  iconElement.setAttribute("alt", response.data.condition.description);
 
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
+  getForecast(response.data.coordinates);
+}
+
+function search(city) {
+  let apiKey = "1ft66b38222ac020b260o674ba337ff5";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#search-city-input").value;
-  searchCity(city);
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
 }
 
-function searchLocation(position) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
-  axios.get(apiUrl).then(displayWeatherCondition);
-}
-
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
-}
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".first-temperature");
-  temperatureElement.innerHTML = 66;
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".first-temperature");
-  temperatureElement.innerHTML = 19;
-}
-
-let dateElement = document.querySelector("h2");
-dateElement.innerHTML = currentDate(currentTime);
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
-
-let currentLocationButton = document.querySelector("#current-link");
-currentLocationButton.addEventListener("click", getCurrentLocation);
-
-searchCity("New York");
+search("New York County");

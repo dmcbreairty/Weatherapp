@@ -14,21 +14,22 @@ body {
 }
 form {
   margin: 12px 0;
-  position: relative;
   top: 46px;
 }
 ul {
-  margin: 0 0 10px;
+  margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 li {
-  color: #7c7c7c;
-  font-size: 14px;
+  color: rgba(162, 168, 211, 1);
+  font-size: 20px;
   font-weight: 400;
-  height: 19px;
+  height: 30px;
   line-height: 1;
   list-style: none;
+  text-decoration: none;
 }
 
 h1,
@@ -38,38 +39,24 @@ h2 {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 45px;
+  color: rgba(17, 63, 103, 1);
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 30px;
   line-height: 10px;
 }
 
 h3 {
-  margin: 10px auto;
-  padding: 10px 0;
+  font-size: 25px;
+  color: rgba(17, 63, 103, 1);
 }
 
-h3 .partly-cloudy {
-  font-size: 48px;
-  color: #c7b198;
-}
 footer {
-  text-align: center;
+  display: block;
   position: fixed;
   bottom: 125px;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  color: #005792;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .weather-app {
@@ -77,105 +64,40 @@ a:hover {
   border: 1px solid grey;
   border-radius: 20px;
   max-width: 680px;
-  margin: 20px auto;
-  padding: 15px 36px;
+  margin: 30px auto;
+  padding: 20px;
 }
 
 .enter-city {
   font-size: 14px;
+  display: block;
 }
 
 .submit-button {
   font-size: 14px;
   max-width: 78px;
-  color: white;
-  background-color: #3baea0;
-}
-
-.centerpic {
-  position: absolute;
-  right: 450px;
-  top: 250px;
-}
-.paragraphpic {
-  position: static;
-  width: 30px;
-}
-
-.temperature-type {
-  text-align: right;
-}
-
-.heading {
-  position: relative;
-  top: 30px;
 }
 
 .first-temperature {
-  font-size: 58px;
-  font-weight: 400;
-  color: midnightblue;
-  position: relative;
-  left: 10px;
-}
-
-.first-temperature-description {
-  font-size: 16px;
-  color: grey;
-  position: relative;
-  top: -4px;
-}
-
-.weather-categories {
-  text-align: left;
-  font-size: 16px;
-  color: grey;
-}
-
-.weather-forecast {
+  font-size: 55px;
   text-align: center;
-  margin: 0 auto;
-  padding: 40px 12px;
+  color: rgba(17, 63, 103, 1);
 }
 
-.weather-forecast .second-day,
-.third-day,
-.fourth-day,
-.fifth-day,
-.sixth-day {
-  font-size: 18px;
+.description {
+  color: rgba(162, 168, 211, 1);
+  font-size: 25px;
 }
 
-.weather-forecast .row .sunny,
-.cloudy,
-.rain-cloud,
-.partly-cloudy {
-  font-size: 32px;
-  margin: 12px 0;
-  padding: 4px;
+.weather img {
+  display: block;
+  float: right;
+  height: 90px;
+  width: 90px;
 }
 
-.weather-forecast .row .sunny {
-  color: #fa9e05;
-}
-
-.weather-forecast .row .cloudy {
-  color: #a2a8d3;
-}
-
-.weather-forecast .row .rain-cloud {
-  color: #2772db;
-}
-
-.weather-forecast .row .partly-cloudy {
-  color: #c7b198;
-}
-
-.weather-forecast .high-temperature,
-.low-temperature {
-  font-size: 16px;
-}
-
-.weather-forecast .low-temperature {
-  color: grey;
+#units {
+  position: relative;
+  top: 13px;
+  font-size: 20px;
 }

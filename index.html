@@ -29,57 +29,61 @@
   <body>
     <div class="container">
       <div class="weather-app">
-        <div class="row">
-          <div class="col-12">
-            <form id="search-form" class="mb-3">
-              <div class="col-9">
-                <input
-                  type="search"
-                  placeholder="Enter a city..."
-                  class="form-control"
-                  id="city-input"
-                  autocomplete="off"
-                />
-              </div>
-              <div class="col-3">
-                <input
-                  type="submit"
-                  value="Search"
-                  class="btn btn-primary w-90"
-                />
-              </div>
-            </form>
+        <form id="search-form" class="mb-3">
+          <div class="row">
+            <div class="col-9">
+              <input
+                type="search"
+                placeholder="Enter a city..."
+                class="form-control"
+                id="city-input"
+                autocomplete="off"
+              />
+            </div>
+            <div class="col-3">
+              <input type="submit" value="Search" class="btn btn-dark w-90" />
+            </div>
           </div>
-        </div>
+        </form>
 
         <div class="heading">
           <h1 id="city">New Milford, CT</h1>
           <h2><span class="date">Today, Oct 5</span></h2>
-          <h3>
-            <div class="row">
-              <div class="col-4">
-                <span class="first-temperature">67°</span>
-                <div class="description">Partly cloudy</div>
-              </div>
-              <div class="col-4">
-                <div class="weather-categories">
-                  <ul>
-                    <li>Humidity: <span id="humidity"></span>%</li>
-                    <li>Wind: <span id="wind"></span> km/h</li>
-                  </ul>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="d-flex weather">
+                <div class="centerpic">
+                  <img
+                    src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+                    alt="Partly Cloudy"
+                    id="icon"
+                  />
                 </div>
+                <span class="first-temperature">67</span
+                ><span id="units">°F</span>
+              </div>
+              <div class="description">Partly cloudy</div>
+            </div>
+
+            <div class="col-6">
+              <div class="weather-categories">
+                <ul>
+                  <li>Humidity: <span id="humidity"></span>%</li>
+                  <li>Wind: <span id="wind"></span> km/h</li>
+                  <li>Pressure: <span id="pressure"></span></li>
+                </ul>
               </div>
             </div>
-          </h3>
+          </div>
         </div>
-        <div class="centerpic"></div>
-        <div class="weather-forecast"></div>
+        <div class="weather-forecast" id="forecast"></div>
       </div>
     </div>
     <footer>
       This project was created by Danielle McBreairty and is open-sourced on
       <a href="https://github.com/dmcbreairty/Weatherapp">Github</a>
     </footer>
-    <script src="src/index.js"></script>
+    <script src="src/script.js"></script>
   </body>
 </html>
