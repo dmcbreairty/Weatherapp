@@ -12,10 +12,7 @@ body {
   );
   font-family: "Josefin Sans", sans-serif;
 }
-form {
-  margin: 12px 0;
-  top: 46px;
-}
+
 ul {
   margin: 0;
   padding: 0;
@@ -32,31 +29,21 @@ li {
   text-decoration: none;
 }
 
-h1,
-h2 {
+h1 {
   font-weight: 400;
   margin: 10px 0;
-}
-
-h1 {
+  font-family: "Josefin Sans", sans-serif;
   font-size: 45px;
   color: rgba(17, 63, 103, 1);
 }
 
-h2 {
-  font-size: 30px;
-  line-height: 10px;
+a {
+  text-decoration: none;
 }
 
-h3 {
-  font-size: 25px;
-  color: rgba(17, 63, 103, 1);
-}
-
-footer {
+.link {
+  text-align: center;
   display: block;
-  position: fixed;
-  bottom: 125px;
 }
 
 .weather-app {
@@ -90,14 +77,20 @@ footer {
 }
 
 .weather img {
-  display: block;
-  float: right;
+  margin-right: 10px;
   height: 90px;
   width: 90px;
 }
 
-#units {
+.weather-temperature .units {
   position: relative;
   top: 13px;
   font-size: 20px;
+}
+
+.weather-temperature strong {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
 }
