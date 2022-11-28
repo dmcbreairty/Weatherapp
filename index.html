@@ -30,49 +30,36 @@
     <div class="container">
       <div class="weather-app">
         <div class="row">
-          <div class="col">
-            <form id="search-form">
-              <div class="row w-fit-content">
-                <div class="col-8">
-                  <input
-                    type="search"
-                    placeholder="Please enter a city"
-                    class="form-control enter-city"
-                    autofocus="on"
-                    id="search-city-input"
-                  />
-                </div>
-                <div class="col-4">
-                  <input
-                    type="submit"
-                    class="form-control submit-button"
-                    value="Search"
-                  />
-                </div>
+          <div class="col-12">
+            <form id="search-form" class="mb-3">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Enter a city..."
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-90"
+                />
               </div>
             </form>
           </div>
-
-          <div class="col mt-2">
-            <div class="row">
-              <div class="col">
-                <div class="temperature-type">
-                  <a href="#" id="current-link">Current</a> |
-                  <a href="#" id="fahrenheit-link">F°</a> |
-                  <a href="#" id="celsius-link">C°</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+
         <div class="heading">
-          <h1>New Milford, CT</h1>
-          <h2>Today, Oct 5</h2>
+          <h1 id="city">New Milford, CT</h1>
+          <h2><span class="date">Today, Oct 5</span></h2>
           <h3>
             <div class="row">
               <div class="col-4">
                 <span class="first-temperature">67°</span>
-                <div class="first-temperature-description">Partly cloudy</div>
+                <div class="description">Partly cloudy</div>
               </div>
               <div class="col-4">
                 <div class="weather-categories">
@@ -85,49 +72,8 @@
             </div>
           </h3>
         </div>
-        <img src="images/sunrain.gif" alt="sunrain" class="centerpic" />
-        <div class="weather-forecast">
-          <div class="row">
-            <div class="col-2">
-              <div class="second-day">Thu</div>
-              <img
-                src="images/sunrain.gif"
-                alt="sunrain"
-                class="paragraphpic"
-              />
-              <div class="second high-temperature">High: 65°</div>
-              <div class="second low-temperature">Low: 46°</div>
-            </div>
-            <div class="col-3">
-              <div class="third-day">Fri</div>
-              <img
-                src="images/sunrain.gif"
-                alt="sunrain"
-                class="paragraphpic"
-              />
-              <div class="third high-temperature">High: 64°</div>
-              <div class="third low-temperature">Low: 42°</div>
-            </div>
-            <div class="col-2">
-              <div class="fourth-day">Sat</div>
-              <img src="images/sun.gif" alt="sun" class="paragraphpic" />
-              <div class="fourth high-temperature">High: 62°</div>
-              <div class="fourth low-temperature">Low: 47°</div>
-            </div>
-            <div class="col-3">
-              <div class="fifth-day">Sun</div>
-              <img src="images/sun.gif" alt="sun" class="paragraphpic" />
-              <div class="fifth high-temperature">High: 63°</div>
-              <div class="fifth low-temperature">Low: 50°</div>
-            </div>
-            <div class="col-2">
-              <div class="sixth-day">Mon</div>
-              <img src="images/rain.gif" alt="rain" class="paragraphpic" />
-              <div class="sixth high-temperature">High: 62°</div>
-              <div class="sixth low-temperature">Low: 44°</div>
-            </div>
-          </div>
-        </div>
+        <div class="centerpic"></div>
+        <div class="weather-forecast"></div>
       </div>
     </div>
     <footer>
